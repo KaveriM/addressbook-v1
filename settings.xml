@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>dnvsraj@rediffmail.com</username>
-      <password>cmVmdGtuOjAxOjE3ODY1MDA4MDQ6MVRoeWFvM2V2b040MEgycVg3YkJzb3lUNlNl</password>
+      <username>kasulaphaniraj@rediffmail.com</username>
+      <password>cmVmdGtuOjAxOjE3OTY0NDU5Njk6YVZLSE1TMnhnN2R0ZnBOOWZmQ2hYVGZ2NlJH</password>
       <id>central</id>
     </server>
     <server>
-      <username>dnvsraj@rediffmail.com</username>
-      <password>cmVmdGtuOjAxOjE3ODY1MDA4MDQ6MVRoeWFvM2V2b040MEgycVg3YkJzb3lUNlNl</password>
+      <username>kasulaphaniraj@rediffmail.com</username>
+      <password>cmVmdGtuOjAxOjE3OTY0NDU5Njk6YVZLSE1TMnhnN2R0ZnBOOWZmQ2hYVGZ2NlJH</password>
       <id>snapshots</id>
     </server>
   </servers>
@@ -22,13 +22,13 @@
           </snapshots>
           <id>central</id>
           <name>test-libs-release</name>
-          <url>https://devopsdemotrial.jfrog.io/artifactory/test-libs-release</url>
+          <url>https://devopsdemotri.jfrog.io/artifactory/test-libs-release</url>
         </repository>
         <repository>
           <snapshots />
           <id>snapshots</id>
           <name>test-libs-snapshot</name>
-          <url>https://devopsdemotrial.jfrog.io/artifactory/test-libs-snapshot</url>
+          <url>https://devopsdemotri.jfrog.io/artifactory/test-libs-snapshot</url>
         </repository>
       </repositories>
       <pluginRepositories>
@@ -38,13 +38,13 @@
           </snapshots>
           <id>central</id>
           <name>test-libs-release</name>
-          <url>https://devopsdemotrial.jfrog.io/artifactory/test-libs-release</url>
+          <url>https://devopsdemotri.jfrog.io/artifactory/test-libs-release</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>snapshots</id>
           <name>test-libs-snapshot</name>
-          <url>https://devopsdemotrial.jfrog.io/artifactory/test-libs-snapshot</url>
+          <url>https://devopsdemotri.jfrog.io/artifactory/test-libs-snapshot</url>
         </pluginRepository>
       </pluginRepositories>
       <id>artifactory</id>
