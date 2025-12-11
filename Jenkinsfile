@@ -22,7 +22,7 @@ pipeline {
             agent any
             steps {
                 script{
-                echo 'Compiling the code in ${params.Env} environment'
+                echo "Compiling the code in ${params.Env} environment"
                 sh "mvn compile"
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
             agent any
             steps {
                 script{
-                echo 'Reviewing the code'
+                echo "Reviewing the code"
                 sh "mvn pmd:pmd"
                 }
             }
@@ -67,7 +67,7 @@ pipeline {
             agent any
             steps {
                 script{
-                echo 'Packaging the code  version ${params.APPVERSION} '
+                echo "Packaging the code  version ${params.APPVERSION} "
                 sh "mvn package"
                     }
                 }
