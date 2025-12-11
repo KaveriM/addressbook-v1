@@ -12,7 +12,7 @@ pipeline {
 
     }
     environment{
-        BUILD_SERVER='ec2-user@172.31.8.244'
+        BUILD_SERVER='ec2-user@172.31.39.76'
         IMAGE_NAME='devopstrainer/java-mvn-privaterepos:$BUILD_NUMBER'
         DEPLOY_SERVER='ec2-user@172.31.0.58'
     }
@@ -68,7 +68,8 @@ pipeline {
             steps {
                 script{
                 echo "Packaging the code  version ${params.APPVERSION} "
-                sh "mvn package"
+                sh "scp -o StrictHostKeyChecking=no server-script.sh ${BUILD_SERVER}:/home/ec2-user/"
+                sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash /home/ec2-user/server-script.sh'" 
                     }
                 }
             }
@@ -76,10 +77,10 @@ pipeline {
     
      stage('Publish the artifacts') {
             agent any
-            input {
+            /*input {
                 message "do you want to Publish the artifacts to JFrog?"
                 ok "yes,publish"
-            }
+            }*/
             steps {
                 script{
                 echo 'Publish the artifacts to JFrog'
