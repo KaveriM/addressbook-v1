@@ -53,50 +53,37 @@ pipeline {
                 }
             }
         }
-        stage('CoverageAnalysis') {
+        stage('Coverage Analysis') {
            // agent {label 'linux_slave'}
            agent any
             steps {
                 script{
-                echo "Static Code Coverage Analysis of ${params.APPVERSION} version"
+                echo 'Static Code Coverage Analysis of  the code'
                 sh "mvn verify"
             }
         }
         }
-        stage('Containerise the code n push the image to dockerhub') {
+        stage('Package') {
             agent any
             steps {
                 script{
-                sshagent(['slave2']) {
-                echo "Packaging the code"
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'password', usernameVariable: 'username')]) {
-                sh "scp -o StrictHostKeyChecking=no server-script.sh ${BUILD_SERVER}:/home/ec2-user/"
-                sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} bash /home/ec2-user/server-script.sh ${IMAGE_NAME}"
-                sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} sudo docker login -u ${username} -p ${password}"
-                sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} sudo docker push ${IMAGE_NAME}"
-            
+                echo 'Packaging the code  version ${params.APPVERSION} '
+                sh "mvn package"
+                    }
+                }
+            }
+        
+    
+     stage('Publish the artifacts') {
+            agent any
+            steps {
+                script{
+                echo 'Publish the artifacts to JFrog'
+                sh "mvn -U deploy -s settings.xml"
                     }
                 }
             }
         }
     }
-     stage('Deploy the docker image') {
-            agent any
-            steps {
-                script{
-                sshagent(['slave2']) {
-                echo 'Packaging the code'
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'password', usernameVariable: 'username')]) {
-                //sh "scp -o StrictHostKeyChecking=no server-script.sh ${BUILD_SERVER}:/home/ec2-user/"
-                //sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} bash /home/ec2-user/server-script.sh ${IMAGE_NAME}"
-                sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} sudo yum install docker -y"
-                sh "ssh  ${DEPLOY_SERVER} sudo service docker start"
-                sh "ssh  ${DEPLOY_SERVER} sudo docker login -u ${username} -p ${password}"
-                sh "ssh  ${DEPLOY_SERVER} sudo docker run -itd -P ${IMAGE_NAME}"
-                    }
-                }
-            }
-        }
-    }
-}
-}
+
+
