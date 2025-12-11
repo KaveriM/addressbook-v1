@@ -11,7 +11,8 @@ then
   cd /home/ec2-user/addressbook-v1
   git pull origin master
 else
-  git clone https://github.com/preethid/addressbook-v1.git
+  git clone https://github.com/KaveriM/addressbook-v1.git
+  
 fi
 
 cd /home/ec2-user/addressbook-v1
