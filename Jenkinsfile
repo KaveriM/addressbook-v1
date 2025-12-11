@@ -31,7 +31,7 @@ pipeline {
             agent any
             steps {
                 script{
-                echo 'Reviewing the code'
+                echo "Reviewing the code"
                 sh "mvn pmd:pmd"
                 }
             }
